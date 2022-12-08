@@ -52,5 +52,5 @@ Com o pip instalado, rodar este comando no terminal:
 Após se certificar que os pacotes foram devidamente instalados e com o terminal aberto nesse diretório...
 
 Rode o comando:
-> py ./main.py
+> py ./SolidoFuncionalTextureApp.py
 
