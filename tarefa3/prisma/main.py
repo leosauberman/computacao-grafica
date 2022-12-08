@@ -5,29 +5,23 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 vertices = (
-    (0, 1, 0),
-    (-1, -1, 1),
-    (1, -1, 1),
-    (1, -1, -1),
-    (-1, -1, -1),
-)
-
-linhas = (
-    (0, 1),
-    (0, 2),
-    (0, 3),
-    (0, 4),
-    (4, 1),
-    (1, 2),
-    (2, 3),
-    (3, 4),
+    (-1, -1, 0),  # 0
+    (1, -1, 0),  # 1
+    (0, -1, -1),  # 2
+    (0, 1, -1),  # 3
+    (-1, 1, 0),  # 4
+    (1, 1, 0),  # 5
 )
 
 faces = (
-    (0, 1, 2),
-    (0, 2, 3),
-    (0, 3, 4),
-    (0, 4, 1)
+    (0, 2, 3, 4),
+    (0, 1, 5, 4),
+    (1, 2, 3, 5),
+)
+
+extremidades = (
+    (3, 4, 5),
+    (0, 1, 2)
 )
 
 cores = (
@@ -36,11 +30,12 @@ cores = (
     (1, 0, 0),
     (0, 1, 0),
     (0, 1, 0),
+    (0, 1, 0),
 )
 
 
-def Piramide():
-    glBegin(GL_TRIANGLES)
+def Prisma():
+    glBegin(GL_QUADS)
     i = 0
     for face in faces:
         # glColor3fv(cores[i])
@@ -49,10 +44,11 @@ def Piramide():
             glVertex3fv(vertices[vertex])
         i = i + 1
     glEnd()
-    glBegin(GL_QUADS)
-    for v in (1, 2, 3, 4):
-        glColor3fv(cores[v])
-        glVertex3fv(vertices[v])
+    glBegin(GL_TRIANGLES)
+    for extremo in extremidades:
+        for vert in extremo:
+            glColor3fv(cores[vert])
+            glVertex3fv(vertices[vert])
     glEnd()
 
 
@@ -64,7 +60,7 @@ def desenha():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glPushMatrix()
     glRotatef(ar, 1, 1, 0)
-    Piramide()
+    Prisma()
     glPopMatrix()
     ar += 0.1
 
@@ -89,7 +85,7 @@ glEnable(GL_MULTISAMPLE)
 glEnable(GL_DEPTH_TEST)
 glClearColor(0., 0., 0., 1.)
 gluPerspective(45, 800.0 / 600.0, 0.1, 100.0)
-glTranslatef(0.0, 0.0, -20)
+glTranslatef(0.0, 0.0, -10)
 
 running = True
 event = sdl2.SDL_Event()
