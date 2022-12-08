@@ -6,7 +6,7 @@ Para cada tarefa (sub-diretório) existe um README.md explicando como deve ser e
 o código e o que é cada um.
 
 1. 📈 [Bézier cúbica](bezier/README.md)
-2. ⭐ [Polígono etsrelado](tarefa2/README.md)
+2. ⭐ [Polígono estrelado](tarefa2/README.md)
 3. 🗻 [Prisma e Pirâmide](tarefa3/README.md)
 4. 🌎 [Esfera](esfera/README.md)
 5. 🕸️ [Malha Funcional](malha_funcional/README.md)
